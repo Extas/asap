@@ -20,7 +20,8 @@
         "CPM_SOURCE_CACHE": "~/.cache/CPM",
         "USE_CCACHE": "ON",
         "ASAP_BUILD_TESTS": "ON",
-        "ASAP_BUILD_EXAMPLES": "ON"
+        "ASAP_BUILD_EXAMPLES": "ON",
+        "ASAP_BUILD_DOCS": "OFF"
       }
     },
     {
