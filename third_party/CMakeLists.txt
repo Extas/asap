@@ -23,3 +23,37 @@ message(STATUS "${ASAP_LOG_PROJECT_HIERARCHY} >> third-party modules")
 #   OPTIONS
 #   "MAGIC_ENUM_OPT_INSTALL ON")
 # ~~~
+
+asap_add_package(
+        NAME
+        fmtlib
+        GIT_TAG
+        11.0.2
+        GITHUB_REPOSITORY
+        fmtlib/fmt
+        OPTIONS
+        "FMT_INSTALL ON")
+
+asap_add_package(
+        NAME
+        spdlog
+        GIT_TAG
+        v1.14.1
+        GITHUB_REPOSITORY
+        gabime/spdlog
+        OPTIONS
+        "SPDLOG_BUILD_SHARED ON"
+        "SPDLOG_INSTALL ON"
+        "SPDLOG_FMT_EXTERNAL ON")
+
+asap_add_package(
+        NAME
+        asap_logging
+        GIT_TAG
+        master
+        GITHUB_REPOSITORY
+        asap-projects/asap-logging
+        OPTIONS
+        "ASAP_LOGGING_INSTALL ON"
+        "ASAP_BUILD_TESTS OFF"
+        "ASAP_BUILD_EXAMPLES OFF")
