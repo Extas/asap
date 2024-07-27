@@ -2,49 +2,34 @@
 #define UTIL_H
 
 #include <fmt/core.h>
+#include <string>
 #include <string_view>
 
 class Util {
 public:
   static void printToolchainInfo() {
-    fmt::println("Compiler: {}", getCompilerName());
-    fmt::println("Compiler Version: {}", getCompilerVersion());
-    fmt::println("C++ Standard: {}", getCppStandard());
+    auto [name, version] = getCompilerInfo();
+    fmt::println("Compiler: {}", name);
+    fmt::println("Compiler Version: {}", version);
+    fmt::println("C++ Standard: {}", __cplusplus);
   }
 
 private:
-  static constexpr std::string_view getCompilerName() {
-#if defined(__clang__)
-    return "Clang";
-#elif defined(__GNUC__) || defined(__GNUG__)
-    return "GCC";
-#elif defined(_MSC_VER)
-    return "MSVC";
-#else
-    return "Unknown";
-#endif
-  }
+  struct CompilerInfo {
+    std::string_view name;
+    std::string version;
+  };
 
-  static constexpr std::string_view getCompilerVersion() {
+  static constexpr auto getCompilerInfo() -> CompilerInfo {
 #if defined(__clang__)
-    return std::string_view{__clang_version__};
+    return CompilerInfo{.name = "Clang", .version = __clang_version__};
 #elif defined(__GNUC__) || defined(__GNUG__)
-    return std::string_view{__VERSION__};
+    return CompilerInfo{.name = "GCC", .version = __VERSION__};
 #elif defined(_MSC_VER)
-    return std::to_string(_MSC_VER);
+    return CompilerInfo{.name = "MSVC", .version = std::to_string(_MSC_VER)};
 #else
-    return "Unknown";
+    return CompilerInfo{.name = "Unknown", .version = "Unknown"};
 #endif
-  }
-
-  static constexpr std::string_view getCppStandard() {
-    if constexpr (__cplusplus == 202002L) {
-      return "C++20";
-    } else if constexpr (__cplusplus == 202300L) {
-      return "C++23";
-    } else {
-      return "pre-C++20";
-    }
   }
 };
 
