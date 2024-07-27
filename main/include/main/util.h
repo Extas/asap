@@ -1,8 +1,8 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-#include <string_view>
 #include <fmt/core.h>
+#include <string_view>
 
 class Util {
 public:
