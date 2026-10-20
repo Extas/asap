@@ -1,6 +1,6 @@
 #include <main/util.h>
 
-int main() {
+auto main() -> int {
   Util::printToolchainInfo();
   return 0;
 }
