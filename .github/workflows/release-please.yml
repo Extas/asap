@@ -1,7 +1,5 @@
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -18,7 +16,7 @@ jobs:
           # this assumes that you have created a personal access token
           # (PAT) and configured it as a GitHub action secret named
           # `RELEASE_PLEASE_TOKEN` (this secret name is not important).
-          token: ${{ secrets.ASAP_RELEASE_PLEASE_TOKEN }}
+          token: ${{ secrets.ASAP_RELEASE_PLEASE_TOKEN || github.token }}
           # this is a built-in strategy in release-please, see "Action Inputs"
           # for more options
           release-type: simple

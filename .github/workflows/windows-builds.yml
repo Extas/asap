@@ -3,13 +3,13 @@ name: windows-builds
 on: workflow_call
 
 env:
-  CMAKE_VERSION: 3.21.1
+  CMAKE_VERSION: 3.31.6
   NINJA_VERSION: 1.11.1
   CCACHE_VERSION: 4.8
 
 jobs:
   dev-build:
-    runs-on: windows-latest
+    runs-on: windows-2022
     strategy:
       matrix:
         generator: ['Ninja', 'NMake Makefiles', 'Visual Studio 17 2022']
@@ -62,7 +62,7 @@ jobs:
       - name: Configure build
         working-directory: ${{runner.workspace}}
         run: |
-          cmake -B build -S asap `
+          cmake -B build -S "$env:GITHUB_WORKSPACE" `
             -D CMAKE_BUILD_TYPE=${{matrix.build_type}} `
             -G "${{ matrix.generator }}" `
             -D USE_CCACHE=ON `

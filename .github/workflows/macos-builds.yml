@@ -3,7 +3,7 @@ name: macos-builds
 on: workflow_call
 
 env:
-  CMAKE_VERSION: 3.21.1
+  CMAKE_VERSION: 3.31.6
   NINJA_VERSION: 1.11.1
   CCACHE_VERSION: 4.8
   CC: clang
